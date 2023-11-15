@@ -1,0 +1,1 @@
+dotnet ef migrations add AddAddressField --startup-project "../MyShop.API/MyShop.API.csproj"
