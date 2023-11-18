@@ -4,9 +4,9 @@ using MyShop.Domain.Events;
 
 namespace MyShop.Application.TodoItems.Commands.DeleteTodoItem;
 
-public record DeleteTodoItem(Guid Id) : IRequest;
+public record DeleteTodoItemCommand(Guid Id) : IRequest;
 
-public class DeleteTodoItemCommandHandler : IRequestHandler<DeleteTodoItem>
+public class DeleteTodoItemCommandHandler : IRequestHandler<DeleteTodoItemCommand>
 {
     private readonly IApplicationDbContext _context;
     public DeleteTodoItemCommandHandler(IApplicationDbContext context)
@@ -14,7 +14,7 @@ public class DeleteTodoItemCommandHandler : IRequestHandler<DeleteTodoItem>
         _context = context;
     }
 
-    public async Task Handle(DeleteTodoItem request, CancellationToken cancellationToken)
+    public async Task Handle(DeleteTodoItemCommand request, CancellationToken cancellationToken)
     {
         var entity = await _context.TodoItems
             .FindAsync(new object[] { request.Id }, cancellationToken);

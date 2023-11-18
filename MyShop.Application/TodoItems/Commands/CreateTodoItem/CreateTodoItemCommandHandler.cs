@@ -5,16 +5,10 @@ using MyShop.Domain.Events;
 
 namespace MyShop.Application.TodoItems.Commands.CreateTodoItem;
 
-public class CreateTodoItemCommand : IRequest<Guid>
-{
-    public Guid ListId { get; init; }
-
-    public string? Title { get; init; }
-}
-
 public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemCommand, Guid>
 {
     private readonly IApplicationDbContext _context;
+    
     public CreateTodoItemCommandHandler(IApplicationDbContext context)
     {
         _context = context;
@@ -24,7 +18,7 @@ public class CreateTodoItemCommandHandler : IRequestHandler<CreateTodoItemComman
     {
         var entity = new TodoItem
         {
-            ListId = request.ListId,
+            TodoListId = request.ListId,
             Title = request.Title,
             Done = false
         };

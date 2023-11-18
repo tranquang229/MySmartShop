@@ -31,11 +31,12 @@ else
 app.UseHttpsRedirection();
 app.UseStaticFiles();
 
-//app.UseSwaggerUi3(settings =>
-//{
-//    settings.Path = "/api";
-//    settings.DocumentPath = "/api/specification.json";
-//});
+if (app.Environment.IsDevelopment())
+{
+    app.UseOpenApi();
+    app.UseSwaggerUi3();
+}
+
 
 app.MapControllerRoute(
     name: "default",

@@ -5,7 +5,7 @@ namespace MyShop.Application.TodoLists.Commands.UpdateTodoLists;
 
 public record UpdateTodoListCommand : IRequest
 {
-    public int Id { get; init; }
+    public Guid Id { get; init; }
 
     public string? Title { get; init; }
 }

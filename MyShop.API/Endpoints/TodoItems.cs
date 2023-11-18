@@ -2,9 +2,11 @@
 using MyShop.API.Infrastructure;
 using MyShop.Application.Common.Models;
 using MyShop.Application.TodoItems.Commands.CreateTodoItem;
+using MyShop.Application.TodoItems.Commands.DeleteTodoItem;
 using MyShop.Application.TodoItems.Commands.UpdateTodoItem;
 using MyShop.Application.TodoItems.Commands.UpdateTodoItemDetail;
 using MyShop.Application.TodoItems.Queries.GetTodoItemsWithPagination;
+using MyShop.Application.TodoLists.Commands.DeleteTodoList;
 
 namespace MyShop.API.Endpoints;
 
@@ -13,7 +15,7 @@ public class TodoItems : EndpointGroupBase
     public override void Map(WebApplication app)
     {
         app.MapGroup(this)
-            .RequireAuthorization()
+            //.RequireAuthorization()
             .MapPost(CreateTodoItem)
             .MapPut(UpdateTodoItem, "{id}")
             .MapPut(UpdateTodoItemDetail, "UpdateDetail/{id}")
@@ -47,6 +49,12 @@ public class TodoItems : EndpointGroupBase
     public async Task<IResult> DeleteTodoItem(ISender sender, Guid id)
     {
         await sender.Send(new DeleteTodoItemCommand(id));
+        return Results.NoContent();
+    }
+
+    public async Task<IResult> DeleteTodoList(ISender sender, Guid id)
+    {
+        await sender.Send(new DeleteTodoListCommand(id));
         return Results.NoContent();
     }
 }

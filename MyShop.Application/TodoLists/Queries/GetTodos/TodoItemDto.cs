@@ -3,9 +3,9 @@
 namespace MyShop.Application.TodoLists.Queries.GetTodos;
 public class TodoItemDto
 {
-    public int Id { get; set; }
+    public Guid Id { get; set; }
 
-    public int ListId { get; set; }
+    public Guid TodoListId { get; set; }
 
     public string? Title { get; set; }
 
@@ -19,8 +19,8 @@ public class TodoItemDto
     {
         public Mapping()
         {
-            CreateMap<TodoItem, TodoItemDto>().ForMember(d => d.Priority,
-                opt => opt.MapFrom(s => (int)s.Priority));
+            CreateMap<TodoItem, TodoItemDto>()
+                .ForMember(d => d.Priority, opt => opt.MapFrom(s => (int)s.Priority));
         }
     }
 }

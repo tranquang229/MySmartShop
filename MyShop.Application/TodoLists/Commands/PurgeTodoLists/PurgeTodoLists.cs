@@ -5,7 +5,7 @@ using MyShop.Domain.Constants;
 
 namespace MyShop.Application.TodoLists.Commands.PurgeTodoLists;
 
-[Authorize(Roles = Roles.Administrator)]
+[Authorize(Roles = Roles.Admin)]
 [Authorize(Policy = Policies.CanPurge)]
 public record PurgeTodoListsCommand : IRequest;
 

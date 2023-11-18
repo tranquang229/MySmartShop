@@ -1,8 +1,11 @@
 ﻿using MediatR;
 using MyShop.Application.Common.Interfaces;
+using MyShop.Application.Common.Security;
 using MyShop.Domain.Entities;
 
 namespace MyShop.Application.TodoLists.Commands.CreateTodoList;
+
+[Authorize]
 public record CreateTodoListCommand : IRequest<Guid>
 {
     public string? Title { get; init; }

@@ -1,15 +1,18 @@
-﻿using MyShop.Application.Common.Models;
+﻿using MyShop.Application.Accounts.Commands.LoginAccount;
+using MyShop.Application.Common.Models;
 
 namespace MyShop.Application.Common.Interfaces;
 public interface IIdentityService
 {
-    Task<string?> GetUserNameAsync(string userId);
+    Task<string?> GetUserNameAsync(Guid userId);
 
-    Task<bool> IsInRoleAsync(string userId, string role);
+    Task<bool> IsInRoleAsync(Guid userId, string role);
 
-    Task<bool> AuthorizeAsync(string userId, string policyName);
+    Task<bool> AuthorizeAsync(Guid userId, string policyName);
 
-    Task<(Result Result, string UserId)> CreateUserAsync(string userName, string password);
+    Task<(Result Result, Guid UserId)> CreateUserAsync(string userName, string password);
 
-    Task<Result> DeleteUserAsync(string userId);
+    Task<Result> DeleteUserAsync(Guid userId);
+
+    Task<LoginAccountDto> Authenticate(string userName, string password);
 }
